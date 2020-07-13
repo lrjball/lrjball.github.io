@@ -1,0 +1,11 @@
+# careers section data
+# if you don't have language feature(language.yml is empty), ignore "i18n" items
+- name: Barclays
+  link: http://www.barclays.com/
+  date: Sept 2017 - <i class="fa fa-clock-o" aria-hidden="true" title="Until Now"></i>
+  job: Data Scientist
+
+- name: Darktrace
+  link: http://www.darktrace.com/
+  date: Sept 2016 - Sept 2017
+  job: Mathematician

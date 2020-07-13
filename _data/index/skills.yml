@@ -1,0 +1,6 @@
+# skills section data
+
+label: Ability
+id : cs
+aspects: Python, Maths, C++, JS/HTML/CSS, Git, ML
+percentage: 95, 95, 60, 50, 80, 95

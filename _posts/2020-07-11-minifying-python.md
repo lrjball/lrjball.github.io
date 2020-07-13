@@ -1,8 +1,10 @@
 ---
 layout: post
 title:  "Minifying Python?"
+excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
 date:   2020-07-11 23:14:06 +0100
-categories: python minify codegolf
+categories: [python, codegolf]
+comments: true
 ---
 
 **Minification** is the process of making code more compact. For languages like Javascript this offers clear benefits 
@@ -89,3 +91,4 @@ Minification will remove comments and docstrings for free, so you never have to 
 
 
 [minigolf]: https://github.com/lrjball/minigolf
+
