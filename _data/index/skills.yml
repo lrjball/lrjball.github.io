@@ -2,5 +2,5 @@
 
 label: Ability
 id : cs
-aspects: Python, Maths, C++, JS/HTML/CSS, Git, ML
-percentage: 95, 95, 60, 50, 80, 95
+aspects: Python, Maths, SQL, Git, ML, C++, JS
+percentage: 95, 95, 90, 80, 95, 55, 65
