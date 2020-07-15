@@ -1,4 +1,4 @@
-- name: minigolf
+- name: minigolf (coming soon)
   descr: "An automated minifier and code golfer for Python. It has a number of use cases, such as removing type hints from a Python repo, removing unnecessary characters for code minification, or replacing logic with a shorter equivalent for code golfing."
   image: "/img/minigolf.png"
   github: https://github.com/lrjball/minigolf

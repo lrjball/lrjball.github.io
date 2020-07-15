@@ -5,6 +5,9 @@ layout: default
 <a class="btn" href= "{{ site.url }}/" >
   Home
 </a>
+<button class='btn' onclick="togglecode()">
+  Toggle Code
+</button>
 {% if page.image.feature %}
 <div class="post-image-feature">
   <img class="feature-image" src=
@@ -65,3 +68,20 @@ layout: default
 <div id="disqus_thread"></div>
 {% include disqus.html %}
 {% endif %}
+
+<script>
+  code_showing = false;
+  function togglecode(){
+    [].forEach.call(document.querySelectorAll('.highlight'), function (el) {
+      if (!code_showing){
+        el.style.height = '100%';
+        el.style.visibility = 'visible';
+      }
+      else {
+        el.style.height = 0;
+        el.style.visibility = 'hidden';
+      }  
+    });
+    code_showing = !code_showing;
+  }
+</script>
