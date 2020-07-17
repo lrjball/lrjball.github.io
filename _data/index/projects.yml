@@ -1,3 +1,8 @@
+- name: Decision
+  descr: "A fun minimalistic puzzle game based on decision trees. The aim is simple: try to separate the two colors of points using as few splits as possible, and in the fastest time. Collect stars as you solve each puzzle, and use them to unlock increasingly difficult chapters. How good are you at making the right decision under pressure?"
+  image: "/img/tree_viz/decision_logo.png"
+  google_play: https://play.google.com/store/apps/details?id=playdecision.decision&hl=en_GB
+
 - name: minigolf (coming soon)
   descr: "An automated minifier and code golfer for Python. It has a number of use cases, such as removing type hints from a Python repo, removing unnecessary characters for code minification, or replacing logic with a shorter equivalent for code golfing."
   image: "/img/minigolf.png"
