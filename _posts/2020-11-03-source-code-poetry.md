@@ -11,7 +11,7 @@ showcode: true
 
 The [Source Code Poetry][source_code_poetry] competition challenges participants to write some code that
 runs without any errors, but also reads as poetry. This post talks a little about my
-thought process when writing my poem. But first, here is my poem:
+thought process when writing my poem. But first, here it is:
 
 ```python
 """A Coronavirus Haiku"""
