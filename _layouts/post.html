@@ -83,8 +83,12 @@ layout: default
       else {
         el.style.height = 0;
         el.style.visibility = 'hidden';
-      }  
+      }
     });
     code_showing = !code_showing;
   }
+
+  {% if page.showcode %}
+    togglecode()
+  {% endif %}
 </script>
