@@ -6,7 +6,7 @@ date:   2020-11-03 12:14:00 +0100
 categories: [python, poetry]
 comments: true
 bootstrap: true
-code: true
+showcode: true
 ---
 
 The [Source Code Poetry][source_code_poetry] competition challenges participants to write some code that
