@@ -421,7 +421,6 @@ df
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th></th>
       <th>Attacking Troops</th>
       <th>Defending Troops</th>
       <th>Advantage</th>
@@ -433,7 +432,6 @@ df
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
       <td>1</td>
       <td>1</td>
       <td>+2 Defense</td>
@@ -443,7 +441,6 @@ df
       <td>1/6</td>
     </tr>
     <tr>
-      <th>1</th>
       <td>1</td>
       <td>1</td>
       <td>+1 Defense</td>
@@ -453,7 +450,6 @@ df
       <td>5/18</td>
     </tr>
     <tr>
-      <th>2</th>
       <td>1</td>
       <td>1</td>
       <td>Even</td>
@@ -463,7 +459,6 @@ df
       <td>5/12</td>
     </tr>
     <tr>
-      <th>3</th>
       <td>1</td>
       <td>1</td>
       <td>+1 Attack</td>
@@ -473,7 +468,6 @@ df
       <td>7/12</td>
     </tr>
     <tr>
-      <th>4</th>
       <td>1</td>
       <td>2</td>
       <td>+2 Defense</td>
@@ -483,7 +477,6 @@ df
       <td>7/108</td>
     </tr>
     <tr>
-      <th>5</th>
       <td>1</td>
       <td>2</td>
       <td>+1 Defense</td>
@@ -493,7 +486,6 @@ df
       <td>5/36</td>
     </tr>
     <tr>
-      <th>6</th>
       <td>1</td>
       <td>2</td>
       <td>Even</td>
@@ -503,7 +495,6 @@ df
       <td>55/216</td>
     </tr>
     <tr>
-      <th>7</th>
       <td>1</td>
       <td>2</td>
       <td>+1 Attack</td>
@@ -513,7 +504,6 @@ df
       <td>91/216</td>
     </tr>
     <tr>
-      <th>8</th>
       <td>2</td>
       <td>1</td>
       <td>+2 Defense</td>
@@ -523,7 +513,6 @@ df
       <td>29/108</td>
     </tr>
     <tr>
-      <th>9</th>
       <td>2</td>
       <td>1</td>
       <td>+1 Defense</td>
@@ -533,7 +522,6 @@ df
       <td>5/12</td>
     </tr>
     <tr>
-      <th>10</th>
       <td>2</td>
       <td>1</td>
       <td>Even</td>
@@ -543,7 +531,6 @@ df
       <td>125/216</td>
     </tr>
     <tr>
-      <th>11</th>
       <td>2</td>
       <td>1</td>
       <td>+1 Attack</td>
@@ -553,7 +540,6 @@ df
       <td>161/216</td>
     </tr>
     <tr>
-      <th>12</th>
       <td>2</td>
       <td>2</td>
       <td>+2 Defense</td>
@@ -563,7 +549,6 @@ df
       <td>647/1296</td>
     </tr>
     <tr>
-      <th>13</th>
       <td>2</td>
       <td>2</td>
       <td>+1 Defense</td>
@@ -573,7 +558,6 @@ df
       <td>265/432</td>
     </tr>
     <tr>
-      <th>14</th>
       <td>2</td>
       <td>2</td>
       <td>Even</td>
@@ -583,7 +567,6 @@ df
       <td>505/648</td>
     </tr>
     <tr>
-      <th>15</th>
       <td>2</td>
       <td>2</td>
       <td>+1 Attack</td>
@@ -593,7 +576,6 @@ df
       <td>1</td>
     </tr>
     <tr>
-      <th>16</th>
       <td>3</td>
       <td>1</td>
       <td>+2 Defense</td>
@@ -603,7 +585,6 @@ df
       <td>1/3</td>
     </tr>
     <tr>
-      <th>17</th>
       <td>3</td>
       <td>1</td>
       <td>+1 Defense</td>
@@ -613,7 +594,6 @@ df
       <td>40/81</td>
     </tr>
     <tr>
-      <th>18</th>
       <td>3</td>
       <td>1</td>
       <td>Even</td>
@@ -623,7 +603,6 @@ df
       <td>95/144</td>
     </tr>
     <tr>
-      <th>19</th>
       <td>3</td>
       <td>1</td>
       <td>+1 Attack</td>
@@ -633,7 +612,6 @@ df
       <td>119/144</td>
     </tr>
     <tr>
-      <th>20</th>
       <td>3</td>
       <td>2</td>
       <td>+2 Defense</td>
@@ -643,7 +621,6 @@ df
       <td>182/243</td>
     </tr>
     <tr>
-      <th>21</th>
       <td>3</td>
       <td>2</td>
       <td>+1 Defense</td>
@@ -653,7 +630,6 @@ df
       <td>431/486</td>
     </tr>
     <tr>
-      <th>22</th>
       <td>3</td>
       <td>2</td>
       <td>Even</td>
@@ -663,7 +639,6 @@ df
       <td>2797/2592</td>
     </tr>
     <tr>
-      <th>23</th>
       <td>3</td>
       <td>2</td>
       <td>+1 Attack</td>
