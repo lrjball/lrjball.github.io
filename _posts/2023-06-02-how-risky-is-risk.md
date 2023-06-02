@@ -8,7 +8,7 @@ comments: true
 mathjax: true
 code: true
 image:
-  feature: /img/risk/risk_infographic.png
+  feature: risk/risk_infographic.png
 ---
 
 'Risk' is an appropriately named board game which revolves around battling opposing armies with the aim of invading their territories and eventually conquering the world. The game involves a large amount of strategy and planning but  also some luck; battles are ultimately won and lost by the rolls of dice. This post is going to explore the battle mechanic in more detail, starting by calculating the probability of winning in different scenarios and then showing how we can get a deeper insight into these numbers with some data visualisation.
