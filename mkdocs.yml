@@ -15,7 +15,6 @@ theme:
     code: Fira Code
   features:
     - header.autohide
-    - navigation.instant
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top

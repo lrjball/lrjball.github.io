@@ -18,10 +18,10 @@ audio:not([controls]) {
   display: none;
   height: 0;
 }
-[hidden],
 template {
   display: none;
 }
+
 mark {
   background: #ff0;
   color: #000;
@@ -145,7 +145,7 @@ table {
 td,
 th {
   padding: 0;
-}
+} */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;

@@ -50,7 +50,6 @@ var data_generator = function(n) {
 
 $('#customRadio1').prop('checked', true);
 dataset = data_generator(points);
-console.log(dataset);
 
 // append the svg objects to the body of the page
 var svg = d3.select('#my_dataviz')
