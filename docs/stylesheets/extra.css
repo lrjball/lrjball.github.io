@@ -1,0 +1,28 @@
+.blog-row {
+    display: flex;
+}
+  
+.blog-column {
+    flex: 50%;
+}
+
+.showcase-image {
+    height: 200px !important;
+    width: 200px !important;
+    object-fit: cover !important;
+}
+
+.showcase-content {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.showcase-content > p {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}

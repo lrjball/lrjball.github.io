@@ -1,0 +1,94 @@
+site_name: lrjball
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/round_lrjball.png
+  favicon: assets/round_lrjball.png
+  icon:
+    tag:
+      python: simple/python
+      default: simple/python
+  font:
+    text: Lexend
+    code: Fira Code
+  features:
+    - header.autohide
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.sections 
+  palette:
+    - scheme: default
+      primary: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/bootstrap.css
+
+extra_javascript:
+  - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/tree_viz/jquery-3.2.1.min.js
+  - https://d3js.org/d3.v4.min.js
+  - javascripts/tree_viz/bootstrap.min.js
+  - javascripts/tree_viz/dt.js
+  - javascripts/tree_viz/data_gen.js
+  - javascripts/tree_viz/viz.js
+  - javascripts/tree_viz/tree_viz.js
+  
+plugins:
+  - glightbox:
+      width: 100%
+  - tags:
+      tags_file: topics.md
+  - blog:
+      blog_toc: true
+      authors_file: "{blog}/.authors.yml"
+      post_date_format: medium
+      post_url_date_format: yyyy/MM
+      archive: true
+      archive_date_format: yyyy
+      archive_toc: true
+      post_readtime: true
+      categories: true
+      categories_name: Categories
+      categories_allowed:
+        - Articles
+        - Today I Learned
+
+markdown_extensions:
+  - md_in_html
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra:
+  tag:
+    Python: python
+  generator: true
+  social:
+    - icon: fontawesome/brands/github 
+      link: https://github.com/lrjball
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/lrjball
