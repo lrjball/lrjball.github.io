@@ -1,0 +1,1217 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../../2020/11/source-code-poetry/">
+      
+      
+        <link rel="next" href="../../09/pydata-amsterdam/">
+      
+      
+      <link rel="icon" href="../../../../assets/round_lrjball.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.8">
+    
+    
+      
+        <title>How Risky is Risk? - lrjball</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4b4a2bd9.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.356b1318.min.css">
+      
+      
+
+
+  
+  
+    
+    
+      
+    
+    
+  
+    
+    
+    
+  
+  
+  <style>.md-tag--python{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.25.18.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>');}.md-tag{--md-tag-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.25.18.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09zm13.09 3.95.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.09-.32.05-.24.02-.16-.01h-8.22v.82h5.84l.01 2.76.02.36-.05.34-.11.31-.17.29-.25.25-.31.24-.38.2-.44.17-.51.15-.58.13-.64.09-.71.07-.77.04-.84.01-1.27-.04-1.07-.14-.9-.2-.73-.25-.59-.3-.45-.33-.34-.34-.25-.34-.16-.33-.1-.3-.04-.25-.02-.2.01-.13v-5.34l.05-.64.13-.54.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.06.26-.04.21-.02.13-.01h5.84l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z"/></svg>');}</style>
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lexend:300,300i,400,400i,700,700i%7CFira+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lexend";--md-code-font:"Fira Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/bootstrap.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+        html.glightbox-open { overflow: initial; height: 100%; }
+        .gslide-title { margin-top: 0px; user-select: text; }
+        .gslide-desc { color: #666; user-select: text; }
+        .gslide-image img { background: white; }
+        
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+            </style> <script src="../../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="indigo">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-risky-is-risk" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2023 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+  
+
+
+<!-- Header -->
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Link to home -->
+    <a
+      href="../../../.."
+      title="lrjball"
+      class="md-header__button md-logo"
+      aria-label="lrjball"
+      data-md-component="logo"
+    >
+      
+  <img src="../../../../assets/round_lrjball.png" alt="logo">
+
+    </a>
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            lrjball
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How Risky is Risk?
+            
+          </span>
+        </div>
+      </div>
+    </div>
+  <!-- Navigation tabs (sticky) -->
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../showcase/" class="md-tabs__link">
+        
+  
+    
+  
+  Showcase
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../topics/" class="md-tabs__link">
+        
+  
+    
+  
+  Topics
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="cyan" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="lrjball" class="md-nav__button md-logo" aria-label="lrjball" data-md-component="logo">
+      
+  <img src="../../../../assets/round_lrjball.png" alt="logo">
+
+    </a>
+    lrjball
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../showcase/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Showcase
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../topics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Topics
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Blog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2020/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2020
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2019/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2019
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+    
+    
+    
+    
+      
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/today-i-learned/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Today I Learned
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/articles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Articles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#battles-in-risk" class="md-nav__link">
+    Battles in Risk
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#battle-probabilities" class="md-nav__link">
+    Battle Probabilities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualising-the-results" class="md-nav__link">
+    Visualising the Results
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/50599110?v=4" alt="Lewis Ball">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>Lewis Ball</strong><br>
+                      Senior Data Scientist
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5v-5Z"/></svg>
+                        <time datetime="2023-06-02 00:00:00" class="md-ellipsis">Jun 2, 2023</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3H9m3 2 4 13 3-1-4-13-3 1M5 5v13h3V5H5M3 19v2h18v-2H3Z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/articles/">Articles</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5Z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              8 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+  
+
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../../../topics/#python" class="md-tag">Python</a>
+    
+  
+    
+    
+    
+      <a href="../../../../topics/#visualisation" class="md-tag">Visualisation</a>
+    
+  
+</nav>
+
+
+
+<h1 id="how-risky-is-risk">How Risky is Risk?</h1>
+<p>'Risk' is an appropriately named board game which revolves around battling opposing armies with the aim of invading their territories and eventually conquering the world. The game involves a large amount of strategy and planning but  also some luck; battles are ultimately won and lost by the rolls of dice. This post is going to explore the battle mechanic in more detail, starting by calculating the probability of winning in different scenarios and then showing how we can get a deeper insight into these numbers with some data visualisation.</p>
+<!-- more -->
+
+<h2 id="battles-in-risk">Battles in Risk</h2>
+<p>The complete rules of Risk won't be described here (<a href="https://en.wikipedia.org/wiki/Risk_(game)">see here</a> if interested) but it is worth describing how battles work in particular. The attacking side can take up to 3 troops into the battle and the defender can take up to 2 troops. Each player then rolls one dice for each of the troops and arranges their dice in descending order. Each players dice are then compared from highest to lowest, with any extra dice from one player being ignored. For each comparison, the player with the lowest dice roll loses a troop. If it is a draw the defender wins, so the attacker loses a troop. </p>
+<p>For example, if the attacker takes 3 troops and the defender takes 2, each player would roll that number of dice:</p>
+<p><a class="glightbox" href="/assets/risk/dice.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/dice.png" /></a></p>
+<p>After rolling, they sort into ascending order, and the attacker would discard their smallest dice as they have one extra one:</p>
+<p><a class="glightbox" href="/assets/risk/dice_sorted.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/dice_sorted.png" /></a></p>
+<p>Then the dice are compared in order, meaning in this case the attacker wins on the first dice and the defender wins on the second (as defense wins draws):</p>
+<p><a class="glightbox" href="/assets/risk/dice_highlighted.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/dice_highlighted.png" /></a>    </p>
+<p>So in this case, both players will lose one troop. </p>
+<p>There is certainly luck involved in the outcome, but each player does have some control in that they can choose how many troops they take into the battle. Intuitively, sending in more troops gives you more dice to roll and a better chance of winning, but it isn't immediately clear how much of an advantage each extra troop brings and whether that advantage is enough to risk losing that troop for the rest of the game.</p>
+<p>In some versions of Risk, there is an additional battle mechanic where, depending on other game factors, either the attacker or defender can get an additional advantage in the form of adding a value to their highest dice before the comparison happens. In some cases, the attacker can get a +1 score added to their highest dice or the defender can get either a +1 or +2 advantage. These additions further complicate the situation - for example, is taking in a single troop with a +2 advantage better than takinmg in 2 troops with no advantage? The next section explores these probabilities in more detail.</p>
+<h2 id="battle-probabilities">Battle Probabilities</h2>
+<p>There are <span class="arithmatex">\(6^n\)</span> different ways of rolling <span class="arithmatex">\(n\)</span> dice, if order is ignored. So if the attacker has n dice and the defender has m dice, there are <span class="arithmatex">\(6^{m+n}\)</span> possibilities, each equally likely to happen. As <span class="arithmatex">\(m+n \le 5\)</span>, this is at most <span class="arithmatex">\(6^5=7776\)</span> possibilities.</p>
+<p>This is small enough to allow every possibility to be evaluated computationally to determine the outcome of the battle in each scenario. Then the expected number of troops lost by each side can be calculated by averaging over the possible rolls. Doing this for 1, 2, or 3 attacking troops, 1 or 2 defending troops as well as optionally either +1 or +2 defensive advantage or a +1 attacking advantage gives the following results for the 24 different battle scenarios:</p>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Attacking Troops</th>
+      <th>Defending Troops</th>
+      <th>Advantage</th>
+      <th>Expected Attacking Losses</th>
+      <th>Expected Defensive Losses</th>
+      <th>Expected Attacking Losses (Exact fraction)</th>
+      <th>Expected Defensive Losses (Exact fraction)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>+2 Defense</td>
+      <td>0.833333</td>
+      <td>0.166667</td>
+      <td>5/6</td>
+      <td>1/6</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>+1 Defense</td>
+      <td>0.722222</td>
+      <td>0.277778</td>
+      <td>13/18</td>
+      <td>5/18</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>Even</td>
+      <td>0.583333</td>
+      <td>0.416667</td>
+      <td>7/12</td>
+      <td>5/12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>+1 Attack</td>
+      <td>0.416667</td>
+      <td>0.583333</td>
+      <td>5/12</td>
+      <td>7/12</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>+2 Defense</td>
+      <td>0.935185</td>
+      <td>0.064815</td>
+      <td>101/108</td>
+      <td>7/108</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>+1 Defense</td>
+      <td>0.861111</td>
+      <td>0.138889</td>
+      <td>31/36</td>
+      <td>5/36</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>Even</td>
+      <td>0.745370</td>
+      <td>0.254630</td>
+      <td>161/216</td>
+      <td>55/216</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>2</td>
+      <td>+1 Attack</td>
+      <td>0.578704</td>
+      <td>0.421296</td>
+      <td>125/216</td>
+      <td>91/216</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>+2 Defense</td>
+      <td>0.731481</td>
+      <td>0.268519</td>
+      <td>79/108</td>
+      <td>29/108</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>+1 Defense</td>
+      <td>0.583333</td>
+      <td>0.416667</td>
+      <td>7/12</td>
+      <td>5/12</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>Even</td>
+      <td>0.421296</td>
+      <td>0.578704</td>
+      <td>91/216</td>
+      <td>125/216</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>1</td>
+      <td>+1 Attack</td>
+      <td>0.254630</td>
+      <td>0.745370</td>
+      <td>55/216</td>
+      <td>161/216</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>+2 Defense</td>
+      <td>1.500772</td>
+      <td>0.499228</td>
+      <td>1945/1296</td>
+      <td>647/1296</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>+1 Defense</td>
+      <td>1.386574</td>
+      <td>0.613426</td>
+      <td>599/432</td>
+      <td>265/432</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>Even</td>
+      <td>1.220679</td>
+      <td>0.779321</td>
+      <td>791/648</td>
+      <td>505/648</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>2</td>
+      <td>+1 Attack</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1</td>
+      <td>+2 Defense</td>
+      <td>0.666667</td>
+      <td>0.333333</td>
+      <td>2/3</td>
+      <td>1/3</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1</td>
+      <td>+1 Defense</td>
+      <td>0.506173</td>
+      <td>0.493827</td>
+      <td>41/81</td>
+      <td>40/81</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1</td>
+      <td>Even</td>
+      <td>0.340278</td>
+      <td>0.659722</td>
+      <td>49/144</td>
+      <td>95/144</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>1</td>
+      <td>+1 Attack</td>
+      <td>0.173611</td>
+      <td>0.826389</td>
+      <td>25/144</td>
+      <td>119/144</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>+2 Defense</td>
+      <td>1.251029</td>
+      <td>0.748971</td>
+      <td>304/243</td>
+      <td>182/243</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>+1 Defense</td>
+      <td>1.113169</td>
+      <td>0.886831</td>
+      <td>541/486</td>
+      <td>431/486</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>Even</td>
+      <td>0.920910</td>
+      <td>1.079090</td>
+      <td>2387/2592</td>
+      <td>2797/2592</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>2</td>
+      <td>+1 Attack</td>
+      <td>0.673225</td>
+      <td>1.326775</td>
+      <td>1745/2592</td>
+      <td>3439/2592</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Notice that the combined number of lost troops will always be <span class="arithmatex">\(min(\)</span>Attacking Troops, Defending Troops<span class="arithmatex">\()\)</span>.</p>
+<p>An interesting scenario happens when both players take two troops to battle, and the attack has a +1 advantage to the higher dice. In this case the battle is perfectly balanced with both players expected to lose one of their two troops. This makes sense, with the +1 advantage for the attacker on the first dice reversing the natural bias towards the defender in the case of a draw, although that defensive bias still exists on the second dice, resulting overall in an expected draw.</p>
+<p>To highlight the example from above, it turns out that having a +2 defensive advantage but only a single troop is better than having 2 troops without an advantage. Again, this makes sense after thinking about each case. For a single troop with a +2 advantage, the expected highest dice will be 5.5 (3.5 for a usual dice, then +2). For two dice with no advantage, the expected highest dice is <span class="arithmatex">\(6*\frac{11}{36} + 5*\frac{9}{36} + 4*\frac{7}{36} + 3*\frac{5}{36} + 2*\frac{3}{36} + 1*\frac{1}{36}=4.47...\)</span></p>
+<p>These results are interesting, but it is still quite hard to consume this data in a raw state. The next section will explore how to better visualise this dataset.</p>
+<h2 id="visualising-the-results">Visualising the Results</h2>
+<p>This raw dataset is 5 dimensional:
+1. Number of attacking troops
+2. Number of defending troops
+3. Advantage
+4. Expected Attacking Losses
+5. Expected Defensive Losses</p>
+<p>It would be difficult to display all of these dimensional in a traditional bar chart or line plot, and some of these dimensions would need to be dropped. Luckily though, some of these dimensions are discrete instead of continuous so can be visualised in a more creative way.</p>
+<p>The infographic below represents this 5 dimensional dataset. Each of the 3x2 grids represents a subset of the possible scenarios for a given value of the advantage (shown at the bottom). Within each box of the grid there are rectangles representing all of the troops that will be lost in that battle, coloured according to the number of expected losses for each side.</p>
+<p><a class="glightbox" href="/assets/risk/risk_infographic.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/risk_infographic.png" style="background-color: white" /></a></p>
+<h1 id="dissecting-the-visualisation">Dissecting the Visualisation</h1>
+<p>As already mentioned, this infographic contains multiple dimensions of data and as a result can be interpreted in many different ways. For example, looking at one of the columns of the grids can aid with an attacking players battle plan, where they know the size of the defending army and the value of the advantage. Highlighted below is one of the columns, which shows the expected attacking loss for a single defending troop with a +2 advantage. It is clear that this scenario will likely not benefit the attacker as they stand to lose more troops than the defender regardless of how many they take into the battle, although if they have troops to spare they may still want to engage to weaken their opponent as well as themselves.</p>
+<p><a class="glightbox" href="/assets/risk/risk_info_column.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/risk_info_column.png" style="background-color: white" /></a></p>
+<p>Equally, the defending player can use the rows of the grids to plan their strategy. The row highlighted below informs the defender that bringing an extra troop in this scenario would take them from likely losing by a large margin to being even in the battle. Also note that by bringing in a second troop, the number of lost troops will now be two as well, so the defender has increased their own expected loss by bringing in the extra troop, although they have increase the attacking losses by more. They could then factor this information into their decision along with knowledge of their available resources etc.</p>
+<p><a class="glightbox" href="/assets/risk/risk_info_row.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/risk_info_row.png" style="background-color: white" /></a>      </p>
+<p>By looking at the same cell in each of the four grids, the visualisation makes it clear what the effect of the advantage is. The highlighted cells below show how the battle changes favour as the advantage goes from defense to attack. This could be used to determine which terretories in the game to attack at which times and also allows for a better understanding of the benefit of an advantage in the game.</p>
+<p><a class="glightbox" href="/assets/risk/risk_info_advantage.png" data-type="image" data-width="100%" data-height="auto" data-desc-position="bottom"><img alt="png" src="/assets/risk/risk_info_advantage.png" style="background-color: white" /></a>       </p>
+<h2 id="final-word">Final Word</h2>
+<p>In summary, this post has explored how battles work in Risk and shown how win probabilities can be calculated in the game. It has also explored the best way to visualise this data and has shown that sometimes custom visualisations can extract additional insights from a problem. This infographic demonstrates that it isn't enough to just look good - it is important to ask the right questions of the data before answering them visually.</p>
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/lrjball" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://linkedin.com/lrjball" target="_blank" rel="noopener" title="linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["header.autohide", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.sections"], "search": "../../../../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.81fa17fe.min.js"></script>
+      
+        <script src="../../../../javascripts/extra.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/jquery-3.2.1.min.js"></script>
+      
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/bootstrap.min.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/dt.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/data_gen.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/viz.js"></script>
+      
+        <script src="../../../../javascripts/tree_viz/tree_viz.js"></script>
+      
+    
+  <script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
